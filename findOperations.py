@@ -30,7 +30,7 @@ def getQnumsAndSikList(df, srcWidth, isTwoSection):
     # soru kalıbının içinde gördüü 1. 2. vb textleri soru olarak algılamaması için...
     qNumPositionMean = np.mean([qNumRow["left"]
                                for i, qNumRow in qNumsDf.iterrows()])
-    print("qNumPositionMean ->", qNumPositionMean)
+    # print("qNumPositionMean ->", qNumPositionMean)
     if(not math.isnan(qNumPositionMean)):
         qNumsDf = qNumsDf[qNumsDf["left"] <= int(qNumPositionMean)+2]
 
@@ -95,7 +95,7 @@ def getAnswerTextCoordinates2(questionAndAnswers, soruKokuCoordinates):
     funReturnList = []
     numOfAnswers = len(questionAndAnswers["answersList"])
     if(answersLayout == "VERTICAL"):
-        print("VERTICAL detect")
+        # print("VERTICAL detect")
         for answerIndex, currAns in enumerate(questionAndAnswers["answersList"]):
             if(answerIndex+1 == numOfAnswers):
                 # son seçenekte buraya girer
@@ -131,7 +131,7 @@ def getAnswerTextCoordinates2(questionAndAnswers, soruKokuCoordinates):
                     "y1": nextAns["top"]-10
                 })
     elif(answersLayout == "HORIZONTAL_TABLE"):
-        print("HORIZONTAL_TABLE detect")
+        # print("HORIZONTAL_TABLE detect")
         minLeftOfAnswers = min(answer["left"]
                                for answer in questionAndAnswers["answersList"])
         maxLeftOfAnswers = max(answer["left"]
@@ -184,7 +184,7 @@ def getAnswerTextCoordinates2(questionAndAnswers, soruKokuCoordinates):
                     "y1": leftAnswer["top"] + rightAnswer["height"]+5
                 })
     elif(answersLayout == "ONE_LINE_HORIZONTAL"):
-        print("ONE_LINE_HORIZONTAL ->")
+        # print("ONE_LINE_HORIZONTAL ->")
         for answerIndex, currAns in enumerate(questionAndAnswers["answersList"]):
             if(answerIndex+1 != numOfAnswers):
                 nextAns = questionAndAnswers["answersList"][answerIndex+1]

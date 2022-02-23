@@ -32,7 +32,7 @@ def getData(defaultImg):
     # sayfada dikey çizgi varsa
     if(len(verticalLines) != 0):
         if((verticalLines[0][1]-verticalLines[0][3] > height*0.7)):
-            print("long vertical line")
+            # print("long vertical line")
             # sayfa buyuk bir cizgiyle ikiye ayrılma durumu
             # sayfayı sol ve sag olarak iki parçaya bölüp
             # kelimeleri sag ve sol olarak iki parcada okuma
@@ -48,7 +48,7 @@ def getData(defaultImg):
             pageResponse["questionList"] = leftCoordinatesList + \
                 rightCoordinatesList
         else:
-            print("short vertical line")
+            # print("short vertical line")
             lineY0 = verticalLines[0][3]
             lineY1 = verticalLines[0][1]
             cleanedTextDf = clearDataFrame(dataFrame, width)
