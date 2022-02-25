@@ -40,10 +40,10 @@ def convertPDF():
 
 
 # start flask app
-if __name__ == "__main__":
- app.run(host="localhost", port=8080)
 #if __name__ == "__main__":
-#    app.run(ssl_context='adhoc')
+# app.run(host="localhost", port=8080)
+if __name__ == "__main__":
+    app.run(ssl_context='adhoc')
 
 #if __name__ == "__main__":
 #    from waitress import serve
