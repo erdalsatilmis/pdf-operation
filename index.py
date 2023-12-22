@@ -31,7 +31,8 @@ def readPage():
 @app.route('/api/pdf/convertImage', methods=['POST', 'OPTIONS'])
 def convertPDF():
     pdfByte = request.files['pdf'].read()
-    pagesBase64 = pdfConvert(pdfByte)
+    imageFormat = request.form.get("format")
+    pagesBase64 = pdfConvert(pdfByte,imageFormat)
     response = {
         "data": pagesBase64
     }

@@ -5,20 +5,14 @@ import numpy as np
 from PreProcesses import get_grayscale, thresholding
 from findOperations import clearDataFrame, findVerticalLines, getSoruKokuAndAnswerTextsCoordinates, rightLeftDetect
 from drawings import drawResponseList, drawVerticalLines
-#pyts.pytesseract.tesseract_cmd = r"C:\Users\Yazilim-2\Documents\GitHub\tesseract_python\tesseract\tesseract.exe"
 
 
 def getData(defaultImg):
-    # cv.namedWindow("defaultImg", cv.WINDOW_NORMAL)
-    # cv.namedWindow("gray", cv.WINDOW_NORMAL)
-
-    # defaultImg = cv.imread(
-    #     "pdfOutput/sectionId1/02c07c2f-5141-4b57-b7e2-f7a1f5a3e4ae-09.jpg")
     height, width, channels = defaultImg.shape
     gray = get_grayscale(defaultImg)
     thresh = thresholding(gray)
     verticalLines = findVerticalLines(defaultImg, width, height)
-    # drawVerticalLines(gray, verticalLines)
+    drawVerticalLines(gray, verticalLines)
 
     df = pyts.image_to_data(gray, output_type=pyts.Output.DICT,
                             lang="eng", config="--psm 6")
@@ -40,11 +34,11 @@ def getData(defaultImg):
             # left side
             leftCoordinatesList = getSoruKokuAndAnswerTextsCoordinates(
                 leftTextsDf, width)
-            drawResponseList(defaultImg, leftCoordinatesList)
+            # drawResponseList(defaultImg, leftCoordinatesList)
             # right side
             rightCoordinatesList = getSoruKokuAndAnswerTextsCoordinates(
                 rightTextsDf, width)
-            drawResponseList(defaultImg, rightCoordinatesList)
+            # drawResponseList(defaultImg, rightCoordinatesList)
             pageResponse["questionList"] = leftCoordinatesList + \
                 rightCoordinatesList
         else:
@@ -63,15 +57,15 @@ def getData(defaultImg):
 
             leftCoordinatesList = getSoruKokuAndAnswerTextsCoordinates(
                 leftTextsDf, width)
-            drawResponseList(defaultImg, leftCoordinatesList)
+            # drawResponseList(defaultImg, leftCoordinatesList)
 
             rightCoordinatesList = getSoruKokuAndAnswerTextsCoordinates(
                 rightTextsDf, width)
-            drawResponseList(defaultImg, rightCoordinatesList)
+            # drawResponseList(defaultImg, rightCoordinatesList)
 
             restOfPageCoordinates = getSoruKokuAndAnswerTextsCoordinates(
                 restOfPageDf, width)
-            drawResponseList(defaultImg, restOfPageCoordinates)
+            # drawResponseList(defaultImg, restOfPageCoordinates)
             pageResponse["questionList"] = leftCoordinatesList + \
                 rightCoordinatesList + restOfPageCoordinates
     else:

@@ -4,7 +4,7 @@ import pdf2image
 import base64
 
 
-def pdfConvert(pdfByte):
+def pdfConvert(pdfByte,imageFormat):
     # poppler kurulması gerek.
     # https://github.com/oschwartz10612/poppler-windows/releases
     #current_directory = os.getcwd()
@@ -13,11 +13,11 @@ def pdfConvert(pdfByte):
     #    os.makedirs(final_directory)
     # output_folder=final_directory,
     pages = pdf2image.convert_from_bytes(
-        pdfByte, fmt='jpeg', thread_count=20)
+        pdfByte, fmt=imageFormat, thread_count=100)
     responseData = []
     for pagePIL in pages:
         buff = BytesIO()
-        pagePIL.save(buff, format="jpeg")
+        pagePIL.save(buff, format=imageFormat)
         img_str = buff.getvalue()
         responseData.append(img_str)
 

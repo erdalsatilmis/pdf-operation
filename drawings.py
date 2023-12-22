@@ -4,7 +4,7 @@ import cv2 as cv
 def drawVerticalLines(src, verticalLines):
     for line in verticalLines:
         cv.line(src, (line[0], line[1]),
-                (line[2], line[3]), (255, 255, 255), 7, cv.LINE_AA)
+                (line[2], line[3]), (255, 100, 0), 2, cv.LINE_AA)
 
 
 def drawSiks(src, sikList):

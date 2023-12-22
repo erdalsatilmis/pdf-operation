@@ -14,7 +14,7 @@ def findVerticalLines(src, srcWidth, srcHeight):
     for i in range(a):
         srcMidPoint = srcWidth/2
         line = lines[i][0]
-        if((line[0] == line[2]) & (srcMidPoint-5 < line[0]) & (srcMidPoint+5 > line[0])):
+        if((line[0] == line[2]) & (srcMidPoint-50 < line[0]) & (srcMidPoint+50 > line[0])):
             verticalLines.append(line)
     return verticalLines
 
@@ -30,7 +30,6 @@ def getQnumsAndSikList(df, srcWidth, isTwoSection):
     # soru kalıbının içinde gördüü 1. 2. vb textleri soru olarak algılamaması için...
     qNumPositionMean = np.mean([qNumRow["left"]
                                for i, qNumRow in qNumsDf.iterrows()])
-    # print("qNumPositionMean ->", qNumPositionMean)
     if(not math.isnan(qNumPositionMean)):
         qNumsDf = qNumsDf[qNumsDf["left"] <= int(qNumPositionMean)+2]
 
@@ -79,11 +78,11 @@ def getSoruKokuCoordinates(sideTextDf, questionAndAnswers):
     soruKokuTexts = sideTextDf[(sideTextDf["top"] > questionAndAnswers["qNumText"]["top"]) & (
         questionAndAnswers["answersList"][0]["top"] > sideTextDf["top"])]
     x0 = questionAndAnswers["qNumText"]["left"] + \
-        questionAndAnswers["qNumText"]["width"]+20
+        questionAndAnswers["qNumText"]["width"]+5
     y0 = questionAndAnswers["qNumText"]["top"]-10
     y1 = questionAndAnswers["answersList"][0]["top"]-20
     x1 = soruKokuTexts[soruKokuTexts["x1"]
-                       == soruKokuTexts["x1"].max()].head(1).x1.item()+10
+                       == soruKokuTexts["x1"].max()].head(1).x1.item()+30
     qNum = questionAndAnswers["qNumText"]
 
     return x0, y0, x1, y1
