@@ -6,15 +6,15 @@ import jsonpickle
 from pdfToImage import pdfConvert
 from readPage import getData
 import base64
-app = Flask(__name__)
-CORS(app)
+application = Flask(__name__)
+CORS(application)
 
 
-@app.route("/")
+@application.route("/")
 def index():
-    return "<h1>Hello!</h1>"
+    return "<h1>Hello! v1</h1>"
 
-@app.route('/api/pdf/imageRead', methods=['POST', 'OPTIONS'])
+@application.route('/api/pdf/imageRead', methods=['POST', 'OPTIONS'])
 def readPage():
     pngUrl = request.form.get('pngUrl')
     imgdata = base64.b64decode(pngUrl)
@@ -28,7 +28,7 @@ def readPage():
     return Response(response=response_pickled, status=200, mimetype="application/json")
 
 
-@app.route('/api/pdf/convertImage', methods=['POST', 'OPTIONS'])
+@application.route('/api/pdf/convertImage', methods=['POST', 'OPTIONS'])
 def convertPDF():
     pdfByte = request.files['pdf'].read()
     imageFormat = request.form.get("format")
@@ -42,7 +42,7 @@ def convertPDF():
 
 # start flask app
 if __name__ == "__main__":
- app.run(host="0.0.0.0", port=8080)
+ application.run(host="0.0.0.0")
 #if __name__ == "__main__":
 #    app.run(ssl_context='adhoc')
 
