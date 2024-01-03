@@ -42,7 +42,7 @@ def convertPDF():
 
 # start flask app
 if __name__ == "__main__":
- application.run(host="0.0.0.0")
+ application.run(host="0.0.0.0",port="8080",ssl_context="adhoc")
 #if __name__ == "__main__":
 #    app.run(ssl_context='adhoc')
 
